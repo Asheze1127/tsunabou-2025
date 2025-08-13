@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, Star, Send, Clock } from 'lucide-react';
 import { dummyPosts } from '../utils/dummyData';
-import { getStoredPosts, savePosts } from '../utils/localStorage';
 import { Post } from '../types';
 
 const Preparedness: React.FC = () => {
@@ -12,13 +11,8 @@ const Preparedness: React.FC = () => {
   const [imagePreview, setImagePreview] = useState<string>('');
 
   useEffect(() => {
-    const storedPosts = getStoredPosts();
-    if (storedPosts.length > 0) {
-      setPosts(storedPosts);
-    } else {
-      setPosts(dummyPosts);
-      savePosts(dummyPosts);
-    }
+    // dummyデータを直接表示
+    setPosts(dummyPosts);
   }, []);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +43,6 @@ const Preparedness: React.FC = () => {
       
       const updatedPosts = [newPost, ...posts];
       setPosts(updatedPosts);
-      savePosts(updatedPosts);
       
       // Reset form
       setTitle('');
