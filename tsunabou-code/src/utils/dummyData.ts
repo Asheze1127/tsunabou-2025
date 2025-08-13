@@ -3,9 +3,9 @@ import { Post, DisasterPin, DailyQuest } from '../types';
 export const dummyPosts: Post[] = [
   {
     id: '1',
-    title: '非常用ライト比較レビュー',
+    title: '非常用サード比較レビュー',
     content: 'LED懐中電灯とソーラーライトを比較してみました。停電時の明るさと持続時間をテストした結果...',
-    image: 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=300',
+    image: 'https://lee.hpplus.jp/wp-content/uploads/2024/08/30/icatch.jpg',
     author: '田中防災',
     authorId: '2',
     timestamp: new Date('2025-01-15T10:30:00'),
