@@ -50,211 +50,206 @@ const Settings: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-gray-700 to-gray-800 text-white p-4">
-        <h1 className="text-xl font-bold flex items-center">
-          <SettingsIcon size={24} className="mr-2" />
-          設定
-        </h1>
-        <p className="text-gray-300 text-sm mt-1">アプリの動作をカスタマイズ</p>
-      </header>
-
-      <div className="p-4 space-y-6">
-        {/* Account Section */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">アカウント</h3>
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
-              <p className="text-gray-600 text-sm">us**@ex*****.com （変更は管理画面から）</p>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-6">
+          {/* Account Section */}
+          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">アカウント</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
+                <p className="text-gray-600 text-sm">us**@ex*****.com （変更は管理画面から）</p>
+              </div>
+              
+              <div>
+                <button className="text-blue-600 text-sm hover:text-blue-700 transition-colors">
+                  パスワードを変更する
+                </button>
+              </div>
             </div>
+          </div>
+
+          {/* Notifications Section */}
+          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">通知</h3>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium">災害速報通知</p>
+                  <p className="text-sm text-gray-600">緊急災害情報をプッシュ通知</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.notifications.disaster}
+                    onChange={(e) => setSettings({
+                      ...settings,
+                      notifications: { ...settings.notifications, disaster: e.target.checked }
+                    })}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium">デイリークエスト通知</p>
+                  <p className="text-sm text-gray-600">毎日の防災クイズをお知らせ</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.notifications.dailyQuest}
+                    onChange={(e) => setSettings({
+                      ...settings,
+                      notifications: { ...settings.notifications, dailyQuest: e.target.checked }
+                    })}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  近隣投稿通知距離: {settings.notifications.nearbyDistance}km
+                </label>
+                <input
+                  type="range"
+                  min="1"
+                  max="20"
+                  value={settings.notifications.nearbyDistance}
+                  onChange={(e) => setSettings({
+                    ...settings,
+                    notifications: { ...settings.notifications, nearbyDistance: Number(e.target.value) }
+                  })}
+                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                />
+                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <span>1km</span>
+                  <span>20km</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-6">
+          {/* Privacy Section */}
+          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">プライバシー</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">プロフィール公開範囲</label>
+                <select
+                  value={settings.privacy.profileVisibility}
+                  onChange={(e) => setSettings({
+                    ...settings,
+                    privacy: { ...settings.privacy, profileVisibility: e.target.value as any }
+                  })}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="public">全体に公開</option>
+                  <option value="regional">地域限定</option>
+                  <option value="private">非公開</option>
+                </select>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-medium">位置情報を共有</p>
+                  <p className="text-sm text-gray-600">防災マップに位置情報を表示</p>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={settings.privacy.shareLocation}
+                    onChange={(e) => setSettings({
+                      ...settings,
+                      privacy: { ...settings.privacy, shareLocation: e.target.checked }
+                    })}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          {/* Region & Language Section */}
+          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">地域・言語</h3>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">既定地域フィルター</label>
+                <select
+                  value={settings.region}
+                  onChange={(e) => setSettings({ ...settings, region: e.target.value })}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  {prefectures.map((prefecture) => (
+                    <option key={prefecture} value={prefecture}>{prefecture}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">言語</label>
+                <select
+                  value={settings.language}
+                  onChange={(e) => setSettings({ ...settings, language: e.target.value as 'ja' | 'en' })}
+                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="ja">日本語</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Theme Section */}
+          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">テーマ</h3>
             
             <div>
-              <button className="text-blue-600 text-sm hover:text-blue-700 transition-colors">
-                パスワードを変更する
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Notifications Section */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">通知</h3>
-          
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">災害速報通知</p>
-                <p className="text-sm text-gray-600">緊急災害情報をプッシュ通知</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.disaster}
-                  onChange={(e) => setSettings({
-                    ...settings,
-                    notifications: { ...settings.notifications, disaster: e.target.checked }
-                  })}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">デイリークエスト通知</p>
-                <p className="text-sm text-gray-600">毎日の防災クイズをお知らせ</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.notifications.dailyQuest}
-                  onChange={(e) => setSettings({
-                    ...settings,
-                    notifications: { ...settings.notifications, dailyQuest: e.target.checked }
-                  })}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                近隣投稿通知距離: {settings.notifications.nearbyDistance}km
-              </label>
-              <input
-                type="range"
-                min="1"
-                max="20"
-                value={settings.notifications.nearbyDistance}
-                onChange={(e) => setSettings({
-                  ...settings,
-                  notifications: { ...settings.notifications, nearbyDistance: Number(e.target.value) }
-                })}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-              />
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>1km</span>
-                <span>20km</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Privacy Section */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">プライバシー</h3>
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">プロフィール公開範囲</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">外観テーマ</label>
               <select
-                value={settings.privacy.profileVisibility}
-                onChange={(e) => setSettings({
-                  ...settings,
-                  privacy: { ...settings.privacy, profileVisibility: e.target.value as any }
-                })}
+                value={settings.theme}
+                onChange={(e) => setSettings({ ...settings, theme: e.target.value as any })}
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="public">全体に公開</option>
-                <option value="regional">地域限定</option>
-                <option value="private">非公開</option>
-              </select>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-medium">位置情報を共有</p>
-                <p className="text-sm text-gray-600">防災マップに位置情報を表示</p>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={settings.privacy.shareLocation}
-                  onChange={(e) => setSettings({
-                    ...settings,
-                    privacy: { ...settings.privacy, shareLocation: e.target.checked }
-                  })}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-          </div>
-        </div>
-
-        {/* Region & Language Section */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">地域・言語</h3>
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">既定地域フィルター</label>
-              <select
-                value={settings.region}
-                onChange={(e) => setSettings({ ...settings, region: e.target.value })}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                {prefectures.map((prefecture) => (
-                  <option key={prefecture} value={prefecture}>{prefecture}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">言語</label>
-              <select
-                value={settings.language}
-                onChange={(e) => setSettings({ ...settings, language: e.target.value as 'ja' | 'en' })}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="ja">日本語</option>
-                <option value="en">English</option>
+                <option value="light">ライトモード</option>
+                <option value="dark">ダークモード</option>
+                <option value="system">システム設定に従う</option>
               </select>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Theme Section */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
-          <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">テーマ</h3>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">外観テーマ</label>
-            <select
-              value={settings.theme}
-              onChange={(e) => setSettings({ ...settings, theme: e.target.value as any })}
-              className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="light">ライトモード</option>
-              <option value="dark">ダークモード</option>
-              <option value="system">システム設定に従う</option>
-            </select>
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex space-x-4 pb-4">
-          <button
-            onClick={handleSave}
-            className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-blue-700 transition-colors"
-          >
-            <Save size={18} />
-            <span>保存</span>
-          </button>
-          
-          <button
-            onClick={handleReset}
-            className="flex-1 bg-gray-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-gray-700 transition-colors"
-          >
-            <RotateCcw size={18} />
-            <span>リセット</span>
-          </button>
-        </div>
+      {/* Action Buttons */}
+      <div className="flex space-x-4 pt-4">
+        <button
+          onClick={handleSave}
+          className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-blue-700 transition-colors"
+        >
+          <Save size={18} />
+          <span>保存</span>
+        </button>
+        
+        <button
+          onClick={handleReset}
+          className="flex-1 bg-gray-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-gray-700 transition-colors"
+        >
+          <RotateCcw size={18} />
+          <span>リセット</span>
+        </button>
       </div>
     </div>
   );

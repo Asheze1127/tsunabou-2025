@@ -60,27 +60,10 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-bold flex items-center">
-            <User size={24} className="mr-2" />
-            プロフィール
-          </h1>
-          <button
-            onClick={() => isEditing ? handleSave() : setIsEditing(true)}
-            className="flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full hover:bg-white/30 transition-colors"
-          >
-            {isEditing ? <Save size={16} /> : <Edit3 size={16} />}
-            <span className="text-sm">{isEditing ? '保存' : '編集'}</span>
-          </button>
-        </div>
-      </header>
-
-      <div className="p-4 space-y-6">
-        {/* User Card */}
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Left Column (Profile Card) */}
+      <div className="lg:col-span-1 space-y-6">
+        <div className="bg-white rounded-xl p-6 shadow-md border border-gray-200">
           <div className="flex items-center space-x-4 mb-4">
             <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
               {user.displayName[0]}
@@ -182,7 +165,10 @@ const Profile: React.FC = () => {
             </div>
           )}
         </div>
+      </div>
 
+      {/* Right Column (Other Info) */}
+      <div className="lg:col-span-2 space-y-6">
         {/* Disaster Score */}
         <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-xl p-4 border border-green-200">
           <div className="flex items-center justify-between mb-3">
@@ -202,12 +188,12 @@ const Profile: React.FC = () => {
         </div>
 
         {/* Supply Summary */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+        <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
           <h3 className="font-bold text-gray-800 mb-3 flex items-center">
             <Package size={20} className="mr-2" />
             備蓄サマリー
           </h3>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {supplies.map((supply, index) => (
               <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                 {getCategoryIcon(supply.category)}
@@ -221,7 +207,7 @@ const Profile: React.FC = () => {
         </div>
 
         {/* My Posts */}
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+        <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
           <h3 className="font-bold text-gray-800 mb-3">マイ投稿</h3>
           <div className="text-center py-8 text-gray-500">
             <Package size={48} className="mx-auto mb-2 opacity-50" />

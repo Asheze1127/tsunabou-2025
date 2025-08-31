@@ -27,18 +27,9 @@ const Map: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen relative">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white p-4 relative z-10">
-        <h1 className="text-xl font-bold flex items-center">
-          <MapPin size={24} className="mr-2" />
-          防災マップ
-        </h1>
-        <p className="text-yellow-100 text-sm mt-1">災害情報をリアルタイムで確認</p>
-      </header>
-
+    <div className="flex flex-col md:flex-row h-full">
       {/* Map Container */}
-      <div className="relative h-96 bg-gradient-to-br from-green-100 to-blue-100 border-b border-gray-300">
+      <div className="md:w-2/3 h-96 md:h-full relative bg-gradient-to-br from-green-100 to-blue-100">
         {/* Simplified Map Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-200 to-blue-200">
           {/* Grid lines to simulate map */}
@@ -93,8 +84,8 @@ const Map: React.FC = () => {
       </div>
 
       {/* Information Panel */}
-      <div className="p-4">
-        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+      <div className="md:w-1/3 p-4 overflow-y-auto">
+        <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
           <div className="flex items-center mb-3">
             <Info size={20} className="text-blue-600 mr-2" />
             <h3 className="font-bold">災害情報一覧</h3>
@@ -129,7 +120,7 @@ const Map: React.FC = () => {
       {selectedPin && (
         <div className="fixed inset-0 bg-black/50 flex items-end justify-center z-50" onClick={() => setSelectedPin(null)}>
           <div 
-            className="bg-white rounded-t-2xl p-6 w-full max-w-md max-h-[70vh] overflow-y-auto"
+            className="bg-white rounded-t-2xl md:rounded-lg p-6 w-full max-w-md max-h-[70vh] md:max-h-[80vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-4">
