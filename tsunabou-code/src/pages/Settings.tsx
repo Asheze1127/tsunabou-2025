@@ -54,17 +54,17 @@ const Settings: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-6">
           {/* Account Section */}
-          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">アカウント</h3>
+          <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
+            <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">アカウント</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
-                <p className="text-gray-600 text-sm">us**@ex*****.com （変更は管理画面から）</p>
+                <label className="block text-sm font-medium text-foreground mb-1">メールアドレス</label>
+                <p className="text-muted-foreground text-sm">us**@ex*****.com （変更は管理画面から）</p>
               </div>
               
               <div>
-                <button className="text-blue-600 text-sm hover:text-blue-700 transition-colors">
+                <button className="text-primary text-sm hover:text-primary/90 transition-colors">
                   パスワードを変更する
                 </button>
               </div>
@@ -72,14 +72,14 @@ const Settings: React.FC = () => {
           </div>
 
           {/* Notifications Section */}
-          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">通知</h3>
+          <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
+            <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">通知</h3>
             
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">災害速報通知</p>
-                  <p className="text-sm text-gray-600">緊急災害情報をプッシュ通知</p>
+                  <p className="text-sm text-muted-foreground">緊急災害情報をプッシュ通知</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -91,14 +91,14 @@ const Settings: React.FC = () => {
                     })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 </label>
               </div>
 
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">デイリークエスト通知</p>
-                  <p className="text-sm text-gray-600">毎日の防災クイズをお知らせ</p>
+                  <p className="text-sm text-muted-foreground">毎日の防災クイズをお知らせ</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -110,12 +110,12 @@ const Settings: React.FC = () => {
                     })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 </label>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   近隣投稿通知距離: {settings.notifications.nearbyDistance}km
                 </label>
                 <input
@@ -127,9 +127,9 @@ const Settings: React.FC = () => {
                     ...settings,
                     notifications: { ...settings.notifications, nearbyDistance: Number(e.target.value) }
                   })}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                  className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
                 />
-                <div className="flex justify-between text-xs text-gray-500 mt-1">
+                <div className="flex justify-between text-xs text-muted-foreground mt-1">
                   <span>1km</span>
                   <span>20km</span>
                 </div>
@@ -140,19 +140,19 @@ const Settings: React.FC = () => {
 
         <div className="space-y-6">
           {/* Privacy Section */}
-          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">プライバシー</h3>
+          <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
+            <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">プライバシー</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">プロフィール公開範囲</label>
+                <label className="block text-sm font-medium text-foreground mb-2">プロフィール公開範囲</label>
                 <select
                   value={settings.privacy.profileVisibility}
                   onChange={(e) => setSettings({
                     ...settings,
                     privacy: { ...settings.privacy, profileVisibility: e.target.value as any }
                   })}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="public">全体に公開</option>
                   <option value="regional">地域限定</option>
@@ -163,7 +163,7 @@ const Settings: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-medium">位置情報を共有</p>
-                  <p className="text-sm text-gray-600">防災マップに位置情報を表示</p>
+                  <p className="text-sm text-muted-foreground">防災マップに位置情報を表示</p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
                   <input
@@ -175,23 +175,23 @@ const Settings: React.FC = () => {
                     })}
                     className="sr-only peer"
                   />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  <div className="w-11 h-6 bg-muted peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-ring rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
                 </label>
               </div>
             </div>
           </div>
 
           {/* Region & Language Section */}
-          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">地域・言語</h3>
+          <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
+            <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">地域・言語</h3>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">既定地域フィルター</label>
+                <label className="block text-sm font-medium text-foreground mb-2">既定地域フィルター</label>
                 <select
                   value={settings.region}
                   onChange={(e) => setSettings({ ...settings, region: e.target.value })}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {prefectures.map((prefecture) => (
                     <option key={prefecture} value={prefecture}>{prefecture}</option>
@@ -200,11 +200,11 @@ const Settings: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">言語</label>
+                <label className="block text-sm font-medium text-foreground mb-2">言語</label>
                 <select
                   value={settings.language}
                   onChange={(e) => setSettings({ ...settings, language: e.target.value as 'ja' | 'en' })}
-                  className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <option value="ja">日本語</option>
                   <option value="en">English</option>
@@ -214,15 +214,15 @@ const Settings: React.FC = () => {
           </div>
 
           {/* Theme Section */}
-          <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
-            <h3 className="font-bold text-gray-800 mb-4 pb-2 border-b border-gray-100">テーマ</h3>
+          <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
+            <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">テーマ</h3>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">外観テーマ</label>
+              <label className="block text-sm font-medium text-foreground mb-2">外観テーマ</label>
               <select
                 value={settings.theme}
                 onChange={(e) => setSettings({ ...settings, theme: e.target.value as any })}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <option value="light">ライトモード</option>
                 <option value="dark">ダークモード</option>
@@ -237,17 +237,17 @@ const Settings: React.FC = () => {
       <div className="flex space-x-4 pt-4">
         <button
           onClick={handleSave}
-          className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex-1"
         >
-          <Save size={18} />
+          <Save size={18} className="mr-2" />
           <span>保存</span>
         </button>
         
         <button
           onClick={handleReset}
-          className="flex-1 bg-gray-600 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:bg-gray-700 transition-colors"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex-1"
         >
-          <RotateCcw size={18} />
+          <RotateCcw size={18} className="mr-2" />
           <span>リセット</span>
         </button>
       </div>

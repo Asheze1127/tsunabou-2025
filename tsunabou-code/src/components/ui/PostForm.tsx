@@ -11,8 +11,8 @@ interface PostFormProps {
 
 const PostForm: React.FC<PostFormProps> = ({ title, content, onTitleChange, onContentChange, onSubmit }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-      <h3 className="font-bold text-gray-800 mb-3">防災情報を共有</h3>
+    <div className="bg-card text-card-foreground rounded-lg p-4 shadow-sm border border-border">
+      <h3 className="font-bold text-lg mb-3">防災情報を共有</h3>
       <form onSubmit={onSubmit} className="space-y-3">
         <div>
           <input
@@ -20,7 +20,7 @@ const PostForm: React.FC<PostFormProps> = ({ title, content, onTitleChange, onCo
             placeholder="タイトル"
             value={title}
             onChange={onTitleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             maxLength={50}
             required
           />
@@ -31,16 +31,16 @@ const PostForm: React.FC<PostFormProps> = ({ title, content, onTitleChange, onCo
             value={content}
             onChange={onContentChange}
             rows={4}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
+            className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
             maxLength={500}
             required
           />
         </div>
         <button
           type="submit"
-          className="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-red-700 transition-colors"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
         >
-          <Send size={18} />
+          <Send size={18} className="mr-2" />
           <span>投稿する</span>
         </button>
       </form>

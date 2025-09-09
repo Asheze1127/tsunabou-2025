@@ -72,7 +72,7 @@ const Preparedness: React.FC = () => {
       <Star
         key={i}
         size={14}
-        className={i < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}
+        className={i < Math.floor(rating) ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground'}
       />
     ));
   };
@@ -82,15 +82,15 @@ const Preparedness: React.FC = () => {
       {/* New Post Button */}
       <button
         onClick={() => setShowForm(!showForm)}
-        className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 hover:from-orange-600 hover:to-red-600 transition-all"
+        className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
       >
-        <Camera size={18} />
+        <Camera size={18} className="mr-2" />
         <span>新しい投稿</span>
       </button>
 
       {/* New Post Form */}
       {showForm && (
-        <div className="bg-white rounded-xl p-4 shadow-md border border-gray-200">
+        <div className="bg-card text-card-foreground rounded-lg p-4 shadow-sm border border-border">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <input
@@ -98,7 +98,7 @@ const Preparedness: React.FC = () => {
                 placeholder="タイトル（例：防災グッズレビュー）"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 maxLength={50}
                 required
               />
@@ -110,27 +110,27 @@ const Preparedness: React.FC = () => {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 rows={4}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent resize-none"
+                className="flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
                 maxLength={500}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 写真をアップロード
               </label>
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleImageUpload}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               />
               {imagePreview && (
                 <img 
                   src={imagePreview} 
                   alt="プレビュー" 
-                  className="mt-2 w-full h-32 object-cover rounded-lg"
+                  className="mt-2 w-full h-32 object-cover rounded-md"
                 />
               )}
             </div>
@@ -138,15 +138,15 @@ const Preparedness: React.FC = () => {
             <div className="flex space-x-2">
               <button
                 type="submit"
-                className="flex-1 bg-orange-600 text-white py-2 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 hover:bg-orange-700 transition-colors"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex-1"
               >
-                <Send size={16} />
+                <Send size={16} className="mr-2" />
                 <span>投稿</span>
               </button>
               <button
                 type="button"
                 onClick={() => setShowForm(false)}
-                className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
               >
                 キャンセル
               </button>
@@ -158,7 +158,7 @@ const Preparedness: React.FC = () => {
       {/* Posts List */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {posts.map((post) => (
-          <div key={post.id} className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+          <div key={post.id} className="bg-card text-card-foreground rounded-lg shadow-sm border border-border overflow-hidden">
             {post.image && (
               <img 
                 src={post.image} 
@@ -169,16 +169,16 @@ const Preparedness: React.FC = () => {
             
             <div className="p-4">
               <div className="flex items-start justify-between mb-2">
-                <h3 className="font-bold text-gray-800 flex-1">{post.title}</h3>
+                <h3 className="font-bold text-lg flex-1">{post.title}</h3>
                 <div className="flex items-center space-x-1 ml-2">
                   {renderStars(post.rating)}
-                  <span className="text-xs text-gray-500 ml-1">({post.rating.toFixed(1)})</span>
+                  <span className="text-xs text-muted-foreground ml-1">({post.rating.toFixed(1)})</span>
                 </div>
               </div>
               
-              <p className="text-gray-600 text-sm mb-3 line-clamp-3">{post.content}</p>
+              <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{post.content}</p>
               
-              <div className="flex items-center justify-between text-xs text-gray-500">
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
                 <span className="font-medium">{post.author}</span>
                 <span className="flex items-center space-x-1">
                   <Clock size={12} />

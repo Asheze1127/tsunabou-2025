@@ -6,7 +6,7 @@ import Header from '../ui/Header';
 
 const Layout: React.FC = () => {
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-background">
       {/* Side Navigation (PC) */}
       <div className="hidden md:block">
         <SideNavigation />

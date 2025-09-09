@@ -17,7 +17,6 @@ const Home: React.FC = () => {
         />
         <QuickActionButton
           to="/map"
-          color="from-yellow-400 to-orange-500"
           icon={MapPin}
           title="防災マップ"
           description="災害情報を確認"

@@ -24,8 +24,8 @@ const SideNavigation: React.FC = () => {
                 to={item.href}
                 className={`flex items-center p-3 my-1 rounded-lg transition-colors ${
                   isActive
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-400 hover:bg-gray-700 hover:text-white'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
                 }`}
               >
                 <item.icon className="mr-3" />

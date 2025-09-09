@@ -11,15 +11,15 @@ interface QuestCardProps {
 
 const QuestCard: React.FC<QuestCardProps> = ({ dailyQuest, selectedAnswer, onAnswerSelect, onAnswerSubmit }) => {
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-xl border border-blue-200">
-      <h3 className="font-bold text-blue-800 mb-3 flex items-center">
-        <CheckCircle size={20} className="mr-2" />
+    <div className="bg-card text-card-foreground rounded-lg p-4 shadow-sm border border-border">
+      <h3 className="font-bold text-lg mb-3 flex items-center">
+        <CheckCircle size={20} className="mr-2 text-primary" />
         今日の防災クエスト
       </h3>
       
       {!dailyQuest.completed ? (
         <div>
-          <p className="text-gray-700 mb-3">{dailyQuest.question}</p>
+          <p className="text-muted-foreground mb-3">{dailyQuest.question}</p>
           <div className="space-y-2 mb-4">
             {dailyQuest.options.map((option, index) => (
               <label key={index} className="flex items-center space-x-2 cursor-pointer">
@@ -29,22 +29,22 @@ const QuestCard: React.FC<QuestCardProps> = ({ dailyQuest, selectedAnswer, onAns
                   value={index}
                   checked={selectedAnswer === index}
                   onChange={() => onAnswerSelect(index)}
-                  className="text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-primary text-primary ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
                 />
-                <span className="text-sm text-black">{option}</span>
+                <span className="text-sm">{option}</span>
               </label>
             ))}
           </div>
           <button
             onClick={onAnswerSubmit}
             disabled={selectedAnswer === null}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
           >
             回答する
           </button>
         </div>
       ) : (
-        <p className="text-green-700 font-medium">✅ 今日のクエストは完了しました！</p>
+        <p className="text-green-600 font-medium">✅ 今日のクエストは完了しました！</p>
       )}
     </div>
   );

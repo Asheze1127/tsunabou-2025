@@ -27,8 +27,8 @@ const BottomNavigation: React.FC = () => {
               to={path}
               className={`flex flex-col items-center py-2 px-3 rounded-lg transition-colors ${
                 isActive
-                  ? 'text-red-600 bg-red-50'
-                  : 'text-gray-600 hover:text-red-500 hover:bg-red-50'
+                  ? 'text-primary bg-primary/10'
+                  : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
               }`}
               aria-label={label}
             >
