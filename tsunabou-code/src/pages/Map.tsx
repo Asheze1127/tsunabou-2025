@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
-import { MapPin, AlertTriangle, Info, X } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { AlertTriangle, Info, X } from 'lucide-react';
 import { dummyDisasterPins } from '../utils/dummyData';
 import { DisasterPin } from '../types';
+import maplibregl from 'maplibre-gl';
 
 const Map: React.FC = () => {
   const [selectedPin, setSelectedPin] = useState<DisasterPin | null>(null);
   const [pins] = useState<DisasterPin[]>(dummyDisasterPins);
+  const mapContainer = useRef<HTMLDivElement>(null);
+  const map = useRef<maplibregl.Map | null>(null);
 
-  const getPinColor = (reliability: number) => {
-    if (reliability >= 0.8) return 'text-destructive';
-    if (reliability >= 0.6) return 'text-orange-500'; // No direct equivalent in new palette, keep for now
-    return 'text-yellow-500'; // No direct equivalent in new palette, keep for now
-  };
 
   const formatTimeAgo = (date: Date) => {
     const now = new Date();
     const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
-    
+
     if (diffInMinutes < 60) {
       return `${diffInMinutes}分前`;
     } else if (diffInMinutes < 1440) {
@@ -26,42 +24,47 @@ const Map: React.FC = () => {
     }
   };
 
+  // Initialize MapLibre map
+  useEffect(() => {
+    if (mapContainer.current && !map.current) {
+      map.current = new maplibregl.Map({
+        container: mapContainer.current,
+        style: 'https://tiles.openfreemap.org/styles/liberty',
+        center: [139.6400, 35.6900], // Tokyo coordinates
+        zoom: 10
+      });
+
+      // Add navigation controls
+      map.current.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+      // Add disaster pins as markers
+      pins.forEach((pin) => {
+        const marker = new maplibregl.Marker({
+          color: pin.reliability >= 0.8 ? '#dc2626' : pin.reliability >= 0.6 ? '#ea580c' : '#eab308'
+        })
+          .setLngLat([pin.lng, pin.lat])
+          .addTo(map.current!);
+
+        // Add click event to marker
+        marker.getElement().addEventListener('click', () => {
+          setSelectedPin(pin);
+        });
+      });
+    }
+
+    return () => {
+      if (map.current) {
+        map.current.remove();
+        map.current = null;
+      }
+    };
+  }, [pins]);
+
   return (
     <div className="flex flex-col md:flex-row h-full">
       {/* Map Container */}
-      <div className="md:w-2/3 h-96 md:h-full relative bg-muted">
-        {/* Simplified Map Background */}
-        <div className="absolute inset-0 bg-muted">
-          {/* Grid lines to simulate map */}
-          <svg className="w-full h-full opacity-20">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(var(--muted-foreground))" strokeWidth="1"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-          
-          {/* Roads simulation */}
-          <div className="absolute top-1/2 left-0 right-0 h-2 bg-muted-foreground transform -translate-y-1/2"></div>
-          <div className="absolute top-0 bottom-0 left-1/2 w-2 bg-muted-foreground transform -translate-x-1/2"></div>
-        </div>
-
-        {/* Disaster Pins */}
-        {pins.map((pin) => (
-          <button
-            key={pin.id}
-            onClick={() => setSelectedPin(pin)}
-            className={`absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 transition-transform ${getPinColor(pin.reliability)}`}
-            style={{
-              left: `${((pin.lng - 139.6400) / 0.015) * 100}%`,
-              top: `${((35.6900 - pin.lat) / 0.020) * 100}%`
-            }}
-            aria-label={`災害情報: ${pin.title}`}
-          >
-            <AlertTriangle size={32} className="drop-shadow-md" />
-          </button>
-        ))}
+      <div className="md:w-2/3 h-96 md:h-full relative">
+        <div ref={mapContainer} className="w-full h-full" />
 
         {/* Legend */}
         <div className="absolute top-4 right-4 bg-card text-card-foreground p-3 rounded-lg shadow-md border border-border">
@@ -90,7 +93,7 @@ const Map: React.FC = () => {
             <Info size={20} className="text-primary mr-2" />
             <h3 className="font-bold text-lg">災害情報一覧</h3>
           </div>
-          
+
           <div className="space-y-3">
             {pins.map((pin) => (
               <div
@@ -119,7 +122,7 @@ const Map: React.FC = () => {
       {/* Pin Detail Modal */}
       {selectedPin && (
         <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-end justify-center z-50" onClick={() => setSelectedPin(null)}>
-          <div 
+          <div
             className="bg-card text-card-foreground rounded-t-lg md:rounded-lg p-6 w-full max-w-md max-h-[70vh] md:max-h-[80vh] overflow-y-auto shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
@@ -133,7 +136,7 @@ const Map: React.FC = () => {
                 <X size={24} />
               </button>
             </div>
-            
+
             {selectedPin.image && (
               <img
                 src={selectedPin.image}
@@ -141,9 +144,9 @@ const Map: React.FC = () => {
                 className="w-full h-48 object-cover rounded-md mb-4"
               />
             )}
-            
+
             <p className="text-muted-foreground mb-4">{selectedPin.description}</p>
-            
+
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-muted-foreground">投稿者:</span>
