@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+ 
+    --primary: 14.9 98% 50%; /* 鮮やかなオレンジ */
+    --primary-foreground: 0 0% 98%;
+ 
+    --secondary: 20 100% 98%; /* 明るいオレンジ */
+    --secondary-foreground: 240 10% 3.9%;
+ 
+    --muted: 20 100% 98%; /* 明るいオレンジ */
+    --muted-foreground: 240 5% 64.9%;
+ 
+    --accent: 20 100% 98%; /* 明るいオレンジ */
+    --accent-foreground: 240 10% 3.9%;
+ 
+    --destructive: 0 84.2% 60.2%; /* 赤 */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 20 100% 90%; /* 明るいオレンジ */
+    --input: 20 100% 90%; /* 明るいオレンジ */
+    --ring: 14.9 98% 50%; /* 鮮やかなオレンジ */
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    /* TBD */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+}
