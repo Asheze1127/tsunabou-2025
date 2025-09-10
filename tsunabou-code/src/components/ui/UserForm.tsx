@@ -4,17 +4,19 @@ import { Button } from "./Button";
 interface UserFormProps {
     submitForm: (e: React.FormEvent) => void;
     children?: React.ReactNode;
+    title?: string;
+    description?: string;
 }
 
 export const UserForm = (
-    { submitForm, children }: UserFormProps
+    { submitForm, children, title= "ログイン", description= "アカウント情報を入力してください" }: UserFormProps
 ) => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900">ログイン</h1>
-          <p className="mt-2 text-sm text-gray-600">アカウント情報を入力してください</p>
+          <h1 className="text-3xl font-bold text-gray-900">{title}</h1>
+          <p className="mt-2 text-sm text-gray-600">{description}</p>
         </div>
         <form className="space-y-6" onSubmit={submitForm}>
           <div>

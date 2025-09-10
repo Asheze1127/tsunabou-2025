@@ -3,6 +3,7 @@ import { Settings as SettingsIcon, Save, RotateCcw } from 'lucide-react';
 import { getStoredSettings, saveSettings } from '../utils/localStorage';
 import { Settings as SettingsType } from '../types';
 import { useLoginStore } from '../store/login.store';
+import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 
 const Settings: React.FC = () => {
@@ -58,13 +59,13 @@ const Settings: React.FC = () => {
           {/* Account Section */}
           <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
             <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">アカウント</h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-1">メールアドレス</label>
                 <p className="text-muted-foreground text-sm">us**@ex*****.com （変更は管理画面から）</p>
               </div>
-              
+
               <div>
                 <button className="text-primary text-sm hover:text-primary/90 transition-colors">
                   パスワードを変更する
@@ -76,7 +77,7 @@ const Settings: React.FC = () => {
           {/* Notifications Section */}
           <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
             <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">通知</h3>
-            
+
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -138,14 +139,20 @@ const Settings: React.FC = () => {
               </div>
             </div>
           </div>
-          <Button onClick={() => setIsLoggedIn(false)}>ログアウト</Button>
+          <Button
+            variant="destructive"
+            asChild
+            onClick={() => setIsLoggedIn(false)}
+          >
+            <Link to="/">ログアウト</Link>
+          </Button>
         </div>
 
         <div className="space-y-6">
           {/* Privacy Section */}
           <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
             <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">プライバシー</h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">プロフィール公開範囲</label>
@@ -187,7 +194,7 @@ const Settings: React.FC = () => {
           {/* Region & Language Section */}
           <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
             <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">地域・言語</h3>
-            
+
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-foreground mb-2">既定地域フィルター</label>
@@ -219,7 +226,7 @@ const Settings: React.FC = () => {
           {/* Theme Section */}
           <div className="bg-card text-card-foreground rounded-lg p-4 shadow-md border border-border">
             <h3 className="font-bold text-lg mb-4 pb-2 border-b border-border">テーマ</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">外観テーマ</label>
               <select
@@ -245,7 +252,7 @@ const Settings: React.FC = () => {
           <Save size={18} className="mr-2" />
           <span>保存</span>
         </button>
-        
+
         <button
           onClick={handleReset}
           className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex-1"
