@@ -29,8 +29,8 @@ function App() {
         </Router>
       ) : (
         <div>
-        <h1>Login</h1>
-        <button onClick={() => setIsLoggedIn()}>a</button>
+        <h1 className='text-2xl font-bold'>Login</h1>
+        <button className='bg-blue-500 text-white p-2 rounded-md' onClick={() => setIsLoggedIn()}>ログイン</button>
         </div>
       )}
     </>
