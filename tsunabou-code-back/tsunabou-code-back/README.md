@@ -103,3 +103,5 @@ Things you may want to cover:
 
 * ...
 >>>>>>> 5eb0138 (Create new rails app of tsunabou)
+
+docker compose run web ~~で実行
