@@ -1,5 +1,6 @@
 import { useLoginStore } from "../../store/login.store";
 import { Button } from "../ui/Button";
+import { Input } from "../ui/input";
 
 
 export const Login = () =>{
@@ -7,7 +8,12 @@ export const Login = () =>{
     return (
         <div>
             <h1 className='text-2xl font-bold'>Login</h1>
-            <Button onClick={() => setIsLoggedIn(true)}>ログイン</Button>
+            <form onSubmit={() => setIsLoggedIn(true)}>
+                <Input type="email" placeholder="Email" />
+                <Input type="text" placeholder="Username" />
+                <Input type="password" placeholder="Password" />
+                <Button type="submit">ログイン</Button>
+            </form>
         </div>
     );
 
