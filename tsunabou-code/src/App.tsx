@@ -6,12 +6,10 @@ import Map from './pages/Map';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import { useLoginStore } from './store/login.store';
+import { Login } from './components/features/Login';
 
 function App() {
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
-  const setIsLoggedIn = () =>{
-    useLoginStore.setState({ isLoggedIn: true });
-  }
 
   return (
     <>
@@ -28,10 +26,7 @@ function App() {
           </Routes>
         </Router>
       ) : (
-        <div>
-        <h1 className='text-2xl font-bold'>Login</h1>
-        <button className='bg-blue-500 text-white p-2 rounded-md' onClick={() => setIsLoggedIn()}>ログイン</button>
-        </div>
+          <Login />
       )}
     </>
   );
