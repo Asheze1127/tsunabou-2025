@@ -3,6 +3,7 @@ import { Settings as SettingsIcon, Save, RotateCcw } from 'lucide-react';
 import { getStoredSettings, saveSettings } from '../utils/localStorage';
 import { Settings as SettingsType } from '../types';
 import { useLoginStore } from '../store/login.store';
+import { Button } from '../components/ui/Button';
 
 const Settings: React.FC = () => {
   const [settings, setSettings] = useState<SettingsType>(getStoredSettings());
@@ -137,7 +138,7 @@ const Settings: React.FC = () => {
               </div>
             </div>
           </div>
-          <button className='bg-red-500 text-white p-2 rounded-md' onClick={() => setIsLoggedIn(false)}>ログアウト</button>
+          <Button onClick={() => setIsLoggedIn(false)}>ログアウト</Button>
         </div>
 
         <div className="space-y-6">

@@ -13,24 +13,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
  
-    --primary: 0 0% 9%; /* 鮮やかなオレンジ */
+    --primary: 24 95% 53%; /* 鮮やかなオレンジ */
     --primary-foreground: 0 0% 98%;
  
-    --secondary: 0 0% 96.1%; /* 明るいオレンジ */
+    --secondary: 35 91% 65%; /* 明るいオレンジ */
     --secondary-foreground: 0 0% 9%;
  
-    --muted: 0 0% 96.1%; /* 明るいオレンジ */
+    --muted: 35 91% 96.1%; /* 明るいオレンジ */
     --muted-foreground: 0 0% 45.1%;
  
-    --accent: 0 0% 96.1%; /* 明るいオレンジ */
+    --accent: 35 91% 96.1%; /* 明るいオレンジ */
     --accent-foreground: 0 0% 9%;
  
     --destructive: 0 84.2% 60.2%; /* 赤 */
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%; /* 明るいオレンジ */
-    --input: 0 0% 89.8%; /* 明るいオレンジ */
-    --ring: 0 0% 3.9%; /* 鮮やかなオレンジ */
+    --border: 35 91% 89.8%; /* 明るいオレンジ */
+    --input: 35 91% 89.8%; /* 明るいオレンジ */
+    --ring: 24 95% 53%; /* 鮮やかなオレンジ */
  
     --radius: 0.5rem;
  

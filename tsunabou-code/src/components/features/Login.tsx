@@ -1,4 +1,5 @@
 import { useLoginStore } from "../../store/login.store";
+import { Button } from "../ui/Button";
 
 
 export const Login = () =>{
@@ -6,7 +7,7 @@ export const Login = () =>{
     return (
         <div>
             <h1 className='text-2xl font-bold'>Login</h1>
-            <button className='bg-blue-500 text-white p-2 rounded-md' onClick={() => setIsLoggedIn(true)}>ログイン</button>
+            <Button onClick={() => setIsLoggedIn(true)}>ログイン</Button>
         </div>
     );
 
