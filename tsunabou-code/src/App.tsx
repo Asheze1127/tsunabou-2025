@@ -9,6 +9,9 @@ import { useLoginStore } from './store/login.store';
 
 function App() {
   const isLoggedIn = useLoginStore((state) => state.isLoggedIn);
+  const setIsLoggedIn = () =>{
+    useLoginStore.setState({ isLoggedIn: true });
+  }
 
   return (
     <>
@@ -25,7 +28,10 @@ function App() {
           </Routes>
         </Router>
       ) : (
+        <div>
         <h1>Login</h1>
+        <button onClick={() => setIsLoggedIn()}>a</button>
+        </div>
       )}
     </>
   );
