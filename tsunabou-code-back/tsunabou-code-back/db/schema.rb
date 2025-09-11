@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_10_201011) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_11_100637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,34 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_10_201011) do
     t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "image_url"
+    t.integer "sort_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "quest_histories", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "date"
+    t.integer "number"
+    t.string "user_answer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_quest_histories_on_user_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "text"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,4 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_10_201011) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "images", "users"
+  add_foreign_key "quest_histories", "users"
+  add_foreign_key "stores", "users"
 end
